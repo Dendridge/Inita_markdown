@@ -3,13 +3,14 @@ function setup(){
     // Création des éléments HTML pour un affichage avec bootstrap
     container = document.getElementById('container');
     row_header = createDiv().addClass('row');
-    row_content = createDiv().addClass('row');
+    row_content = createDiv().addClass('row content');
+    row_help = createDiv().addClass('row');
     // Label info
-    label_info = createElement('h3', 'Info MarkDown').addClass('col-2');
+    //label_info = createElement('h3', 'Info MarkDown').addClass('col-2');
     // Label tu textarea
-    label_ta = createElement('h3', 'Texte à rédiger en MarkDown').addClass('col-5');
+    label_ta = createElement('h3', 'Texte à rédiger en MarkDown').addClass('col-6');
     // Label du preview
-    label_preview = createElement('h3', 'Preview après conversion').addClass('col-5'); 
+    label_preview = createElement('h3', 'Preview après conversion').addClass('col-6'); 
   
     // Label d'information markdown  
     div_info = createP('MarkDown possible : <br />'
@@ -20,23 +21,22 @@ function setup(){
                         + '<h5>h5 : #####</h5>'
                         + '<h6>h6 : ######</h6>'
                         + '<b>Texte en gras : ** Texte **</b><br />'
-                        + '<i>Texte en italique : * Texte *</i>').addClass('preview col-2');
+                        + '<i>Texte en italique : * Texte *</i><br />').addClass('info col-12');
     // Textearea view
-    ta = createElement('textarea', 'Texte de base.').addClass('form-control col-5');
+    ta = createElement('textarea', 'Texte de base.').addClass('form-control col-6');
     // Preview view
-    preview = createP().addClass('preview col-5');
+    preview = createP().addClass('preview col-6');
     // Bouton d'export HTML et wiki
     btn_html = createButton('Export en HTML').addClass('btn btn-primary');
     btn_wiki = createButton('Export en Wikimedia').addClass('btn btn-primary');
   
-    //console.log(ta);
     // Assignation child > parent
     row_header.parent(container);
     row_content.parent(container);
-    label_info.parent(row_header);
+    row_help.parent(container);
     label_ta.parent(row_header);
     label_preview.parent(row_header);
-    div_info.parent(row_content);
+    div_info.parent(row_help);
     ta.parent(row_content);
     preview.parent(row_content);
     btn_html.parent(div_info);
@@ -80,11 +80,11 @@ function transformation(tx){
   // Fonction d'export du format HTML
   function export_html(){
     console.log(preview.elt.innerHTML);
-    saveStrings(split(preview.elt.innerHTML, ' '), 'version_html.txt');
+    saveStrings(split(preview.elt.innerHTML, '\n'), 'version_html.txt');
   }
 
   // Fonction d'export du format Wiki
   function export_wiki(){
     console.log(ta.elt.value);
-    saveStrings(split(ta.elt.value, ' '), 'version_wiki.txt');
+    saveStrings(split(ta.elt.value, '\n'), 'version_wiki.txt');
   }
