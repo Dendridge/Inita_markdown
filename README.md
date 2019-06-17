@@ -1,4 +1,4 @@
-# Inita_markdown
+# Intia_markdown
 
 Création d'un éditeur Markdown.
 
